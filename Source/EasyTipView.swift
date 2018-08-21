@@ -119,8 +119,8 @@ public extension EasyTipView {
         }
         
         if animated {
-            UIView.animate(withDuration: preferences.animating.showDuration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseInOut], animations: animations, completion: nil)
-        }else{
+            UIView.animate(withDuration: preferences.animating.showDuration, delay: preferences.animating.showDelay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseInOut], animations: animations, completion: nil)
+        } else {
             animations()
         }
     }
@@ -135,7 +135,7 @@ public extension EasyTipView {
         let damping = preferences.animating.springDamping
         let velocity = preferences.animating.springVelocity
         
-        UIView.animate(withDuration: preferences.animating.dismissDuration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: preferences.animating.dismissDuration, delay: preferences.animating.dismissDelay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseInOut], animations: {
             self.transform = self.preferences.animating.dismissTransform
             self.alpha = self.preferences.animating.dismissFinalAlpha
         }) { (finished) -> Void in
@@ -205,6 +205,8 @@ open class EasyTipView: UIView {
             public var dismissFinalAlpha    = CGFloat(0)
             public var showDuration         = 0.7
             public var dismissDuration      = 0.7
+            public var showDelay            = 0.0
+            public var dismissDelay         = 0.0
             public var dismissOnTap         = true
         }
         
